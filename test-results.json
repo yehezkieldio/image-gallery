@@ -1,16 +1,1 @@
-{
-    "nativeLazyLoading": {
-        "Load Time": "112.80ms",
-        "Memory Usage": "5.17MB",
-        "Network Requests": "3",
-        "CPU Usage": "19.5%",
-        "Layout Shift (CLS)": "0.015"
-    },
-    "intersectionObserver": {
-        "Load Time": "38.80ms",
-        "Memory Usage": "11.00MB",
-        "Network Requests": "3",
-        "CPU Usage": "5.1%",
-        "Layout Shift (CLS)": "0.047"
-    }
-}
+{}
