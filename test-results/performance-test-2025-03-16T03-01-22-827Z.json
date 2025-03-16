@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "timestamp": "2025-03-16T03-01-22-827Z",
+    "testSuite": "Image Loading Performance",
+    "totalTests": 18,
+    "devices": [
+      "desktop",
+      "tablet",
+      "mobile"
+    ],
+    "networks": [
+      "fast",
+      "medium",
+      "slow"
+    ],
+    "scrollPatterns": [
+      "fast",
+      "jump"
+    ]
+  },
+  "results": {
+    "desktop": {
+      "fast": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "488.00ms",
+            "LCP": "1780.00ms",
+            "Load Time": "532.40ms",
+            "Memory Usage": "5.94MB",
+            "Network Requests": "3",
+            "CPU Usage": "10.0%",
+            "Layout Shift (CLS)": "0.017"
+          },
+          "intersectionObserver": {
+            "FCP": "488.00ms",
+            "LCP": "1780.00ms",
+            "Load Time": "41.30ms",
+            "Memory Usage": "12.74MB",
+            "Network Requests": "3",
+            "CPU Usage": "11.6%",
+            "Layout Shift (CLS)": "0.003"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "432.00ms",
+            "LCP": "1632.00ms",
+            "Load Time": "657.40ms",
+            "Memory Usage": "5.32MB",
+            "Network Requests": "3",
+            "CPU Usage": "12.4%",
+            "Layout Shift (CLS)": "0.015"
+          },
+          "intersectionObserver": {
+            "FCP": "432.00ms",
+            "LCP": "1632.00ms",
+            "Load Time": "58.40ms",
+            "Memory Usage": "9.00MB",
+            "Network Requests": "3",
+            "CPU Usage": "15.3%",
+            "Layout Shift (CLS)": "0.005"
+          }
+        }
+      },
+      "medium": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "712.00ms",
+            "LCP": "1604.00ms",
+            "Load Time": "351.80ms",
+            "Memory Usage": "5.34MB",
+            "Network Requests": "3",
+            "CPU Usage": "13.1%",
+            "Layout Shift (CLS)": "0.048"
+          },
+          "intersectionObserver": {
+            "FCP": "712.00ms",
+            "LCP": "1604.00ms",
+            "Load Time": "43.10ms",
+            "Memory Usage": "9.50MB",
+            "Network Requests": "3",
+            "CPU Usage": "14.7%",
+            "Layout Shift (CLS)": "0.063"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "468.00ms",
+            "LCP": "820.00ms",
+            "Load Time": "199.60ms",
+            "Memory Usage": "5.33MB",
+            "Network Requests": "3",
+            "CPU Usage": "7.9%",
+            "Layout Shift (CLS)": "0.040"
+          },
+          "intersectionObserver": {
+            "FCP": "468.00ms",
+            "LCP": "820.00ms",
+            "Load Time": "52.30ms",
+            "Memory Usage": "16.60MB",
+            "Network Requests": "3",
+            "CPU Usage": "17.6%",
+            "Layout Shift (CLS)": "0.058"
+          }
+        }
+      },
+      "slow": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "728.00ms",
+            "LCP": "2204.00ms",
+            "Load Time": "344.30ms",
+            "Memory Usage": "5.03MB",
+            "Network Requests": "3",
+            "CPU Usage": "14.2%",
+            "Layout Shift (CLS)": "0.096"
+          },
+          "intersectionObserver": {
+            "FCP": "728.00ms",
+            "LCP": "2204.00ms",
+            "Load Time": "41.10ms",
+            "Memory Usage": "6.18MB",
+            "Network Requests": "3",
+            "CPU Usage": "18.8%",
+            "Layout Shift (CLS)": "0.040"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "764.00ms",
+            "LCP": "2220.00ms",
+            "Load Time": "380.20ms",
+            "Memory Usage": "5.95MB",
+            "Network Requests": "3",
+            "CPU Usage": "7.7%",
+            "Layout Shift (CLS)": "0.056"
+          },
+          "intersectionObserver": {
+            "FCP": "764.00ms",
+            "LCP": "2220.00ms",
+            "Load Time": "50.60ms",
+            "Memory Usage": "11.23MB",
+            "Network Requests": "3",
+            "CPU Usage": "8.9%",
+            "Layout Shift (CLS)": "0.046"
+          }
+        }
+      }
+    },
+    "tablet": {
+      "fast": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "332.00ms",
+            "LCP": "1668.00ms",
+            "Load Time": "245.40ms",
+            "Memory Usage": "5.46MB",
+            "Network Requests": "3",
+            "CPU Usage": "11.9%",
+            "Layout Shift (CLS)": "0.057"
+          },
+          "intersectionObserver": {
+            "FCP": "332.00ms",
+            "LCP": "1668.00ms",
+            "Load Time": "67.50ms",
+            "Memory Usage": "11.93MB",
+            "Network Requests": "3",
+            "CPU Usage": "13.2%",
+            "Layout Shift (CLS)": "0.092"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "348.00ms",
+            "LCP": "1596.00ms",
+            "Load Time": "234.20ms",
+            "Memory Usage": "5.31MB",
+            "Network Requests": "3",
+            "CPU Usage": "12.0%",
+            "Layout Shift (CLS)": "0.077"
+          },
+          "intersectionObserver": {
+            "FCP": "348.00ms",
+            "LCP": "1596.00ms",
+            "Load Time": "61.10ms",
+            "Memory Usage": "6.45MB",
+            "Network Requests": "3",
+            "CPU Usage": "19.0%",
+            "Layout Shift (CLS)": "0.093"
+          }
+        }
+      },
+      "medium": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "508.00ms",
+            "LCP": "1088.00ms",
+            "Load Time": "276.90ms",
+            "Memory Usage": "5.30MB",
+            "Network Requests": "3",
+            "CPU Usage": "13.8%",
+            "Layout Shift (CLS)": "0.055"
+          },
+          "intersectionObserver": {
+            "FCP": "508.00ms",
+            "LCP": "1088.00ms",
+            "Load Time": "77.40ms",
+            "Memory Usage": "17.36MB",
+            "Network Requests": "3",
+            "CPU Usage": "18.4%",
+            "Layout Shift (CLS)": "0.051"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "436.00ms",
+            "LCP": "812.00ms",
+            "Load Time": "204.00ms",
+            "Memory Usage": "5.35MB",
+            "Network Requests": "3",
+            "CPU Usage": "9.9%",
+            "Layout Shift (CLS)": "0.008"
+          },
+          "intersectionObserver": {
+            "FCP": "436.00ms",
+            "LCP": "812.00ms",
+            "Load Time": "41.00ms",
+            "Memory Usage": "7.98MB",
+            "Network Requests": "3",
+            "CPU Usage": "7.1%",
+            "Layout Shift (CLS)": "0.059"
+          }
+        }
+      },
+      "slow": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "760.00ms",
+            "LCP": "2208.00ms",
+            "Load Time": "348.30ms",
+            "Memory Usage": "5.91MB",
+            "Network Requests": "3",
+            "CPU Usage": "5.9%",
+            "Layout Shift (CLS)": "0.030"
+          },
+          "intersectionObserver": {
+            "FCP": "760.00ms",
+            "LCP": "2208.00ms",
+            "Load Time": "45.70ms",
+            "Memory Usage": "12.57MB",
+            "Network Requests": "3",
+            "CPU Usage": "5.5%",
+            "Layout Shift (CLS)": "0.081"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "780.00ms",
+            "LCP": "2192.00ms",
+            "Load Time": "389.50ms",
+            "Memory Usage": "5.91MB",
+            "Network Requests": "3",
+            "CPU Usage": "9.8%",
+            "Layout Shift (CLS)": "0.086"
+          },
+          "intersectionObserver": {
+            "FCP": "780.00ms",
+            "LCP": "2192.00ms",
+            "Load Time": "58.10ms",
+            "Memory Usage": "8.70MB",
+            "Network Requests": "3",
+            "CPU Usage": "5.3%",
+            "Layout Shift (CLS)": "0.061"
+          }
+        }
+      }
+    },
+    "mobile": {
+      "fast": {
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "268.00ms",
+            "LCP": "3744.00ms",
+            "Load Time": "2195.20ms",
+            "Memory Usage": "5.90MB",
+            "Network Requests": "3",
+            "CPU Usage": "19.2%",
+            "Layout Shift (CLS)": "0.096"
+          },
+          "intersectionObserver": {
+            "FCP": "268.00ms",
+            "LCP": "3744.00ms",
+            "Load Time": "2052.20ms",
+            "Memory Usage": "4.61MB",
+            "Network Requests": "3",
+            "CPU Usage": "18.0%",
+            "Layout Shift (CLS)": "0.049"
+          }
+        },
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "316.00ms",
+            "LCP": "316.00ms",
+            "Load Time": "2298.20ms",
+            "Memory Usage": "5.95MB",
+            "Network Requests": "3",
+            "CPU Usage": "16.0%",
+            "Layout Shift (CLS)": "0.088"
+          },
+          "intersectionObserver": {
+            "FCP": "316.00ms",
+            "LCP": "316.00ms",
+            "Load Time": "2195.40ms",
+            "Memory Usage": "4.91MB",
+            "Network Requests": "3",
+            "CPU Usage": "6.9%",
+            "Layout Shift (CLS)": "0.049"
+          }
+        }
+      },
+      "medium": {
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "496.00ms",
+            "LCP": "496.00ms",
+            "Load Time": "2274.30ms",
+            "Memory Usage": "6.04MB",
+            "Network Requests": "3",
+            "CPU Usage": "17.7%",
+            "Layout Shift (CLS)": "0.092"
+          },
+          "intersectionObserver": {
+            "FCP": "496.00ms",
+            "LCP": "496.00ms",
+            "Load Time": "2200.00ms",
+            "Memory Usage": "6.51MB",
+            "Network Requests": "3",
+            "CPU Usage": "7.6%",
+            "Layout Shift (CLS)": "0.071"
+          }
+        },
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "416.00ms",
+            "LCP": "3704.00ms",
+            "Load Time": "2209.90ms",
+            "Memory Usage": "5.85MB",
+            "Network Requests": "3",
+            "CPU Usage": "7.5%",
+            "Layout Shift (CLS)": "0.048"
+          },
+          "intersectionObserver": {
+            "FCP": "416.00ms",
+            "LCP": "3704.00ms",
+            "Load Time": "2052.70ms",
+            "Memory Usage": "4.55MB",
+            "Network Requests": "3",
+            "CPU Usage": "15.3%",
+            "Layout Shift (CLS)": "0.011"
+          }
+        }
+      },
+      "slow": {
+        "jump": {
+          "nativeLazyLoading": {
+            "FCP": "724.00ms",
+            "LCP": "4712.00ms",
+            "Load Time": "2337.90ms",
+            "Memory Usage": "5.05MB",
+            "Network Requests": "3",
+            "CPU Usage": "6.4%",
+            "Layout Shift (CLS)": "0.015"
+          },
+          "intersectionObserver": {
+            "FCP": "724.00ms",
+            "LCP": "4712.00ms",
+            "Load Time": "2054.50ms",
+            "Memory Usage": "4.55MB",
+            "Network Requests": "3",
+            "CPU Usage": "10.1%",
+            "Layout Shift (CLS)": "0.028"
+          }
+        },
+        "fast": {
+          "nativeLazyLoading": {
+            "FCP": "748.00ms",
+            "LCP": "748.00ms",
+            "Load Time": "2373.50ms",
+            "Memory Usage": "5.11MB",
+            "Network Requests": "3",
+            "CPU Usage": "10.9%",
+            "Layout Shift (CLS)": "0.014"
+          },
+          "intersectionObserver": {
+            "FCP": "748.00ms",
+            "LCP": "748.00ms",
+            "Load Time": "2193.10ms",
+            "Memory Usage": "10.88MB",
+            "Network Requests": "3",
+            "CPU Usage": "15.7%",
+            "Layout Shift (CLS)": "0.066"
+          }
+        }
+      }
+    }
+  }
+}

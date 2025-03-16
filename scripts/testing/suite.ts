@@ -1,4 +1,5 @@
-import fs from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import lighthouse from "lighthouse";
 import puppeteer, { type Browser, type Page } from "puppeteer";
 
@@ -189,7 +190,6 @@ async function collectMetrics(page: Page) {
         ...existingMetrics,
     };
 
-    console.log("Performance Metrics:", combinedMetrics);
     return combinedMetrics;
 }
 
@@ -200,10 +200,22 @@ async function runDeviceTest(
     scrollPattern: keyof typeof scrollPatterns
 ) {
     const page = await browser.newPage();
+    await page.setRequestInterception(true);
+    page.on("request", (request) => {
+        const resourceType = request.resourceType();
+        if (["image", "media", "font"].includes(resourceType) && request.url().includes("analytics")) {
+            request.abort();
+        } else {
+            request.continue();
+        }
+    });
+
     await page.setUserAgent(deviceProfile.userAgent);
     await page.setViewport(deviceProfile.viewport);
 
     const client = await page.createCDPSession();
+    await client.send("Network.clearBrowserCache");
+    await client.send("Network.clearBrowserCookies");
     await client.send("Network.enable");
     await client.send("Network.emulateNetworkConditions", {
         offline: false,
@@ -270,48 +282,92 @@ async function runDeviceTest(
 
 async function runTests() {
     console.log("Starting Puppeteer tests across devices, networks, and scroll patterns...");
-    const browser = await puppeteer.launch();
+
+    // Replace single browser with browser pool
+    const CONCURRENT_BROWSERS = 3; // Adjust based on system resources
+    const browserPool = await Promise.all(new Array(CONCURRENT_BROWSERS).fill(0).map(() => puppeteer.launch()));
+
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const results: Record<string, Record<string, Record<string, Record<string, any>>>> = {};
+    const testQueue: Array<{
+        device: string;
+        network: string;
+        scrollPattern: keyof typeof scrollPatterns;
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        profile: any;
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        condition: any;
+    }> = [];
 
-    try {
-        for (const [device, profile] of Object.entries(deviceProfiles)) {
-            results[device] = {};
-            console.log(`\nTesting on ${profile.name}...`);
+    // Build test queue
+    for (const [device, profile] of Object.entries(deviceProfiles)) {
+        results[device] = {};
 
-            for (const [network, condition] of Object.entries(networkConditions)) {
-                results[device][network] = {};
-                console.log(`\nTesting with ${condition.name} network...`);
+        for (const [network, condition] of Object.entries(networkConditions)) {
+            results[device][network] = {};
 
-                for (const scrollPattern of Object.keys(scrollPatterns) as Array<keyof typeof scrollPatterns>) {
-                    console.log(`\nTesting with ${scrollPatterns[scrollPattern].name} pattern...`);
-                    results[device][network][scrollPattern] = await runDeviceTest(
-                        browser,
-                        profile,
-                        condition,
-                        scrollPattern
-                    );
-                }
+            for (const scrollPattern of Object.keys(scrollPatterns) as Array<keyof typeof scrollPatterns>) {
+                testQueue.push({
+                    device,
+                    network,
+                    scrollPattern,
+                    profile,
+                    condition,
+                });
             }
         }
+    }
 
-        await fs.writeFile(
-            "./test-results.json",
-            JSON.stringify(
-                {
-                    timestamp: new Date().toISOString(),
-                    results,
-                },
-                null,
-                2
-            )
-        );
+    try {
+        // Process tests in parallel batches
+        const batchSize = browserPool.length;
+        for (let i = 0; i < testQueue.length; i += batchSize) {
+            const batch = testQueue.slice(i, i + batchSize);
+            const batchPromises = batch.map((test, index) => {
+                console.log(
+                    `Testing ${test.profile.name} with ${test.condition.name} network using ${scrollPatterns[test.scrollPattern].name} pattern...`
+                );
+                return runDeviceTest(
+                    browserPool[index % browserPool.length],
+                    test.profile,
+                    test.condition,
+                    test.scrollPattern
+                ).then((testResults) => {
+                    results[test.device][test.network][test.scrollPattern] = testResults;
+                });
+            });
 
-        console.log("\nTests completed! Results saved to test-results.json");
-    } catch (error) {
-        console.error("Tests failed:", error);
+            await Promise.all(batchPromises);
+        }
+
+        // ...existing code to save results...
+
+        // Save results to JSON file
+        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+        const resultsDir = join(process.cwd(), "test-results");
+
+        // Create results directory if it doesn't exist
+        await mkdir(resultsDir, { recursive: true });
+
+        // Prepare final results object with metadata
+        const finalResults = {
+            metadata: {
+                timestamp,
+                testSuite: "Image Loading Performance",
+                totalTests: testQueue.length,
+                devices: Object.keys(deviceProfiles),
+                networks: Object.keys(networkConditions),
+                scrollPatterns: Object.keys(scrollPatterns),
+            },
+            results,
+        };
+
+        // Write results to JSON file
+        const filePath = join(resultsDir, `performance-test-${timestamp}.json`);
+        await writeFile(filePath, JSON.stringify(finalResults, null, 2));
+        console.log(`Test results saved to ${filePath}`);
     } finally {
-        await browser.close();
+        await Promise.all(browserPool.map((browser) => browser.close()));
     }
 }
 
